@@ -1,0 +1,57 @@
+package:
+  name: ros-humble-navigator
+  version: 0.0.1
+
+source:
+  path: .
+
+build:
+  number: 0
+  script: >-
+   colcon build --merge-install --install-base $PREFIX --cmake-args \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DCMAKE_PREFIX_PATH=$PREFIX \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DPython3_EXECUTABLE=$PYTHON_EXECUTABLE \
+    -DPython3_FIND_STRATEGY=LOCATION \
+    -DPKG_CONFIG_EXECUTABLE=$PKG_CONFIG_EXECUTABLE \
+    -DBUILD_SHARED_LIBS=ON  \
+    -DBUILD_TESTING=OFF \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=$OSX_DEPLOYMENT_TARGET \
+    $SRC_DIR\
+
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }} 
+    - cmake
+    - ninja
+    - colcon-core
+    - colcon-ros
+    - make
+    - coreutils
+  host: 
+    - pkg-config
+    - ros-humble-ament-cmake
+    - ros-humble-ament-index-cpp
+    - ros-humble-rclcpp
+    - ros-humble-rclcpp-action
+    - ros-humble-ros-environment
+    - ros-humble-ros-workspace
+    - ros-humble-rosidl-default-generators
+    - ros-humble-std-msgs
+    - ros-humble-geometry-msgs
+    - ros-humble-turtlesim
+    - ros2-distro-mutex 0.5 humble
+  run :
+    - ros-humble-rclcpp
+    - ros-humble-ros-workspace
+    - ros-humble-rosidl-default-runtime
+    - ros-humble-geometry-msgs
+    - ros-humble-turtlesim
+    - ros2-distro-mutex 0.5 humble
+
+about:
+  description: Example ros package which includes a navigation server
+

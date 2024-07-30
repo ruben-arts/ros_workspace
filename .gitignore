@@ -1,0 +1,8 @@
+# pixi environments
+.pixi
+*.egg-info
+
+output
+build
+install
+log

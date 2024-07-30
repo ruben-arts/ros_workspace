@@ -1,0 +1,56 @@
+package:
+  name: ros-humble-talker
+  version: 0.0.5
+
+source:
+  path: .
+
+build:
+  number: 0
+  script: >-
+   colcon --log-level debug build --install-base $PREFIX --cmake-args \
+    -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DCMAKE_PREFIX_PATH=$PREFIX \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DPYTHON_EXECUTABLE=$PREFIX/bin/python \
+    -DPython_EXECUTABLE=$PREFIX/bin/python \
+    -DPython3_EXECUTABLE=$PREFIX/bin/python \
+    -DPython3_FIND_STRATEGY=LOCATION \
+    -DBUILD_SHARED_LIBS=ON  \
+    -DBUILD_TESTING=OFF \
+    $SRC_DIR/$PKG_NAME/src/work
+
+
+requirements:
+  build:
+    - python 3.11.*
+    - setuptools <=58.2.0
+    - ${{ compiler('cxx') }} 
+    - cmake
+    - ninja
+    - colcon-core
+    - colcon-ros
+    - make
+    - coreutils
+  host: 
+    - python 3.11.*
+    - setuptools <=58.2.0
+    - colcon-core
+    - colcon-ros
+    - ros-humble-ament-package
+    - ros-humble-rclpy
+    - ros-humble-ros-environment
+    - ros-humble-ros-workspace
+    - ros-humble-rosidl-default-generators
+    - ros2-distro-mutex 0.5 humble
+  run :
+    - python 3.11.*
+    - ros-humble-rclpy
+    - ros-humble-ament-package
+    - ros-humble-ros-workspace
+    - ros-humble-rosidl-default-runtime
+    - ros2-distro-mutex 0.5 humble
+
+about:
+  description: Example ros package which includes a talker cli app
+
