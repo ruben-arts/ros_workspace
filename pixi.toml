@@ -37,9 +37,9 @@ build-navigator = "rattler-build build -r src/navigator/recipe.yaml -c conda-for
 build-talker = "rattler-build build -r src/talker/recipe.yaml -c conda-forge -c robostack-staging"
 
 [feature.built.dependencies]
-# ros-humble-navigator = { url = "file:///home/rarts/dev/ros_workspace/output/linux-64/ros-humble-navigator-0.0.1-hb0f4dca_0.conda" }
-# ros-humble-talker = { url = "file:///home/rarts/dev/ros_workspace/output/linux-64/ros-humble-talker-0.0.2-hb0f4dca_0.conda" }
+ros-humble-navigator = { url = "file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-navigator-0.0.1-hb0f4dca_0.conda" }
+ros-humble-talker = { url = "file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-talker-0.0.5-hb0f4dca_0.conda" }
 
 [environments]
-build = { features = ["build"], no-default-feature = true}
+build = { features = ["build"], no-default-feature = true }
 built = { features = ["built"], no-default-feature = false }

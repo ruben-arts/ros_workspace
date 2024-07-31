@@ -24,7 +24,7 @@ ament_target_dependencies(
 )
 
 install(TARGETS navigator
-  DESTINATION bin)
+  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
