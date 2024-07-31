@@ -7,22 +7,12 @@ source:
 
 build:
   number: 0
-  script: >-
-   colcon --log-level debug build --install-base $PREFIX --cmake-args \
-    -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DCMAKE_PREFIX_PATH=$PREFIX \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DPYTHON_EXECUTABLE=$PREFIX/bin/python \
-    -DPython_EXECUTABLE=$PREFIX/bin/python \
-    -DPython3_EXECUTABLE=$PREFIX/bin/python \
-    -DPython3_FIND_STRATEGY=LOCATION \
-    -DBUILD_SHARED_LIBS=ON  \
-    -DBUILD_TESTING=OFF \
-    $SRC_DIR/$PKG_NAME/src/work
+  script: py-ros-conda-build.sh
 
 
 requirements:
   build:
+    - ros-conda-build-support
     - python 3.11.*
     - setuptools <=58.2.0
     - ${{ compiler('cxx') }} 

@@ -7,23 +7,11 @@ source:
 
 build:
   number: 0
-  script: >-
-   colcon build --merge-install --install-base $PREFIX --cmake-args \
-    -G "Ninja" \
-    -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DCMAKE_PREFIX_PATH=$PREFIX \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DPython3_EXECUTABLE=$PYTHON_EXECUTABLE \
-    -DPython3_FIND_STRATEGY=LOCATION \
-    -DPKG_CONFIG_EXECUTABLE=$PKG_CONFIG_EXECUTABLE \
-    -DBUILD_SHARED_LIBS=ON  \
-    -DBUILD_TESTING=OFF \
-    -DCMAKE_OSX_DEPLOYMENT_TARGET=$OSX_DEPLOYMENT_TARGET \
-    $SRC_DIR\
-
+  script: ros-conda-build.sh
 
 requirements:
   build:
+    - ros-conda-build-support
     - ${{ compiler('cxx') }} 
     - cmake
     - ninja
