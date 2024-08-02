@@ -8,7 +8,7 @@ class TurtleNavigator : public rclcpp::Node
 {
 public:
     TurtleNavigator()
-        : Node("turtle_navigator"), x_goal_(0.0), y_goal_(0.0), kp_(1.0), ki_(0.0), kd_(0.0), prev_error_(0.0), integral_(0.0)
+        : Node("turtle_navigator"), x_goal_(5.0), y_goal_(5.0), kp_(1.0), ki_(0.0), kd_(0.05), prev_error_(0.0), integral_(0.0)
     {
         subscription_ = this->create_subscription<geometry_msgs::msg::Point>(
             "coordinates", 10, std::bind(&TurtleNavigator::goal_callback, this, std::placeholders::_1));
@@ -43,16 +43,26 @@ private:
 
         double angle_to_goal = std::atan2(error_y, error_x);
         double angle_error = angle_to_goal - theta_current_;
+        
+        // Normalize angle error to the range [-pi, pi]
+        while (angle_error > M_PI) angle_error -= 2 * M_PI;
+        while (angle_error < -M_PI) angle_error += 2 * M_PI;
 
         // PID control
         double control_signal = kp_ * distance_error + ki_ * integral_ + kd_ * (distance_error - prev_error_);
         integral_ += distance_error;
         prev_error_ = distance_error;
 
+        // Limit control signal
+        double max_linear_speed = 2.0; // Max linear speed
+        double max_angular_speed = 2.0; // Max angular speed
+        control_signal = std::clamp(control_signal, -max_linear_speed, max_linear_speed);
+
         // Publish velocity commands
         auto msg = geometry_msgs::msg::Twist();
         msg.linear.x = control_signal;
         msg.angular.z = 4.0 * angle_error; // simple P controller for angle
+        msg.angular.z = std::clamp(msg.angular.z, -max_angular_speed, max_angular_speed);
 
         publisher_->publish(msg);
     }

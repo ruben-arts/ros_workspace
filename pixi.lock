@@ -2,8 +2,8 @@ version: 5
 environments:
   build:
     channels:
-    - url: https://conda.anaconda.org/conda-forge/
-    - url: https://conda.anaconda.org/robostack-staging/
+    - url: https://conda.anaconda.org/conda-forge
+    - url: https://conda.anaconda.org/robostack-staging
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -16,8 +16,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/rattler-build-0.18.2-hb177b26_0.conda
   built:
     channels:
-    - url: https://conda.anaconda.org/conda-forge/
-    - url: https://conda.anaconda.org/robostack-staging/
+    - url: https://conda.anaconda.org/conda-forge
+    - url: https://conda.anaconda.org/robostack-staging
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -258,6 +258,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/munkres-1.1.4-pyh9f0ad1d_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/linux-64/mysql-common-8.0.33-hf1915f5_6.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/mysql-libs-8.0.33-hca2cd23_6.conda
+      - conda: file:///home/rarts/dev/ros_workspace/output/linux-64/navigator-0.0.1-hb0f4dca_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h59595ed_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/netifaces-0.11.0-py311h459d7ec_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/nettle-3.9.1-h7ab15ed_0.conda
@@ -440,7 +441,6 @@ environments:
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-map-msgs-2.1.0-py311hb335429_6.tar.bz2
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-message-filters-4.3.3-py311hb335429_6.tar.bz2
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-nav-msgs-4.2.3-py311hb335429_6.tar.bz2
-      - conda: file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-navigator-0.0.1-hb0f4dca_0.conda
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-orocos-kdl-vendor-0.2.5-py311hb335429_6.tar.bz2
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-osrf-pycommon-2.0.2-py311hb335429_6.tar.bz2
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-pcl-conversions-2.4.0-py311hf85fee4_6.tar.bz2
@@ -574,7 +574,6 @@ environments:
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-std-msgs-4.2.3-py311hb335429_6.tar.bz2
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-std-srvs-4.2.3-py311hb335429_6.tar.bz2
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-stereo-msgs-4.2.3-py311hb335429_6.tar.bz2
-      - conda: file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-talker-0.0.5-hb0f4dca_0.conda
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-tango-icons-vendor-0.1.1-py311hb335429_6.tar.bz2
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-teleop-twist-joy-2.4.5-py311hb335429_6.tar.bz2
       - conda: https://conda.anaconda.org/robostack-staging/linux-64/ros-humble-teleop-twist-keyboard-2.3.2-py311hb335429_6.tar.bz2
@@ -620,6 +619,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.46.0-h6d4b2fc_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/svt-av1-2.1.0-hac33072_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/sysroot_linux-64-2.17-h4a8ded7_16.conda
+      - conda: file:///home/rarts/dev/ros_workspace/output/linux-64/talker-0.0.1-hb0f4dca_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/tbb-2021.12.0-h434a139_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/tbb-devel-2021.12.0-hfcbfbdb_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/tinyxml-2.6.2-h4bd325d_2.tar.bz2
@@ -674,8 +674,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zziplib-0.13.69-h27826a3_1.tar.bz2
   default:
     channels:
-    - url: https://conda.anaconda.org/conda-forge/
-    - url: https://conda.anaconda.org/robostack-staging/
+    - url: https://conda.anaconda.org/conda-forge
+    - url: https://conda.anaconda.org/robostack-staging
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -5470,6 +5470,26 @@ packages:
   size: 1530126
   timestamp: 1698937116126
 - kind: conda
+  name: navigator
+  version: 0.0.1
+  build: hb0f4dca_0
+  subdir: linux-64
+  url: file:///home/rarts/dev/ros_workspace/output/linux-64/navigator-0.0.1-hb0f4dca_0.conda
+  depends:
+  - ros-humble-rclcpp
+  - ros-humble-ros-workspace
+  - ros-humble-rosidl-default-runtime
+  - ros-humble-geometry-msgs
+  - ros-humble-turtlesim
+  - ros2-distro-mutex ==0.5 humble
+  - libstdcxx-ng >=14
+  - libgcc-ng >=14
+  - ros2-distro-mutex 0.5.*
+  arch: x86_64
+  platform: linux
+  file_name: file:///home/rarts/dev/ros_workspace/output/linux-64/navigator-0.0.1-hb0f4dca_0.conda
+  timestamp: 1722437361609
+- kind: conda
   name: ncurses
   version: '6.5'
   build: h59595ed_0
@@ -10025,26 +10045,6 @@ packages:
   size: 193565
   timestamp: 1707313676329
 - kind: conda
-  name: ros-humble-navigator
-  version: 0.0.1
-  build: hb0f4dca_0
-  subdir: linux-64
-  url: file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-navigator-0.0.1-hb0f4dca_0.conda
-  depends:
-  - ros-humble-rclcpp
-  - ros-humble-ros-workspace
-  - ros-humble-rosidl-default-runtime
-  - ros-humble-geometry-msgs
-  - ros-humble-turtlesim
-  - ros2-distro-mutex ==0.5 humble
-  - libstdcxx-ng >=14
-  - libgcc-ng >=14
-  - ros2-distro-mutex >=0.5.0,<0.6
-  arch: x86_64
-  platform: linux
-  file_name: file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-navigator-0.0.1-hb0f4dca_0.conda
-  timestamp: 1722434184819
-- kind: conda
   name: ros-humble-orocos-kdl-vendor
   version: 0.2.5
   build: py311hb335429_6
@@ -14145,27 +14145,6 @@ packages:
   size: 62150
   timestamp: 1707314052194
 - kind: conda
-  name: ros-humble-talker
-  version: 0.0.5
-  build: hb0f4dca_0
-  subdir: linux-64
-  url: file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-talker-0.0.5-hb0f4dca_0.conda
-  depends:
-  - python 3.11.*
-  - ros-humble-rclpy
-  - ros-humble-ament-package
-  - ros-humble-ros-workspace
-  - ros-humble-rosidl-default-runtime
-  - ros2-distro-mutex ==0.5 humble
-  - libstdcxx-ng >=14
-  - libgcc-ng >=14
-  - python_abi 3.11.* *_cp311
-  - ros2-distro-mutex >=0.5.0,<0.6
-  arch: x86_64
-  platform: linux
-  file_name: file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-talker-0.0.5-hb0f4dca_0.conda
-  timestamp: 1722434774869
-- kind: conda
   name: ros-humble-tango-icons-vendor
   version: 0.1.1
   build: py311hb335429_6
@@ -15304,6 +15283,27 @@ packages:
   license_family: GPL
   size: 15513240
   timestamp: 1720621429816
+- kind: conda
+  name: talker
+  version: 0.0.1
+  build: hb0f4dca_0
+  subdir: linux-64
+  url: file:///home/rarts/dev/ros_workspace/output/linux-64/talker-0.0.1-hb0f4dca_0.conda
+  depends:
+  - python 3.11.*
+  - ros-humble-rclpy
+  - ros-humble-ament-package
+  - ros-humble-ros-workspace
+  - ros-humble-rosidl-default-runtime
+  - ros2-distro-mutex ==0.5 humble
+  - libstdcxx-ng >=14
+  - libgcc-ng >=14
+  - python_abi 3.11.* *_cp311
+  - ros2-distro-mutex 0.5.*
+  arch: x86_64
+  platform: linux
+  file_name: file:///home/rarts/dev/ros_workspace/output/linux-64/talker-0.0.1-hb0f4dca_0.conda
+  timestamp: 1722437390906
 - kind: conda
   name: tbb
   version: 2021.12.0

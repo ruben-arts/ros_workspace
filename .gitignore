@@ -2,6 +2,10 @@
 .pixi
 *.egg-info
 
+*.pyc
+
+.vscode
+
 output
 build
 install

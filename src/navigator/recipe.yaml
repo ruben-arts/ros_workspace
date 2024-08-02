@@ -1,5 +1,5 @@
 package:
-  name: ros-humble-navigator
+  name: navigator
   version: 0.0.1
 
 source:
@@ -15,11 +15,13 @@ requirements:
     - ${{ compiler('cxx') }} 
     - cmake
     - ninja
-    - colcon-core
-    - colcon-ros
     - make
     - coreutils
   host: 
+    - cmake
+    - ninja
+    - make
+    - coreutils
     - pkg-config
     - ros-humble-ament-cmake
     - ros-humble-ament-index-cpp

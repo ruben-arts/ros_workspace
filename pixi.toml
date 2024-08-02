@@ -10,7 +10,6 @@ platforms = ["linux-64"]
 sim = "ros2 run turtlesim turtlesim_node"
 build = "colcon build --symlink-install --cmake-args -G Ninja"
 talker = "ros2 run talker talker"
-visualizer = "ros2 run visualizer visualizer"
 navigator = "ros2 run navigator navigator"
 
 [dependencies]
@@ -33,12 +32,13 @@ scripts = ["install/setup.sh"]
 rattler-build = "*"
 
 [feature.build.tasks]
-build-navigator = "rattler-build build -r src/navigator/recipe.yaml -c conda-forge -c robostack-staging"
-build-talker = "rattler-build build -r src/talker/recipe.yaml -c conda-forge -c robostack-staging"
-
-[feature.built.dependencies]
-ros-humble-navigator = { url = "file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-navigator-0.0.1-hb0f4dca_0.conda" }
-ros-humble-talker = { url = "file:///home/wolfv/Programs/ros_workspace/output/linux-64/ros-humble-talker-0.0.5-hb0f4dca_0.conda" }
+build-navigator = { cmd = "rattler-build build -r src/navigator/recipe.yaml -c conda-forge -c robostack-staging -c ./output", depends-on = [
+    "build-ros-conda-support",
+] }
+build-talker = { cmd = "rattler-build build -r src/talker/recipe.yaml -c conda-forge -c robostack-staging -c ./output", depends-on = [
+    "build-ros-conda-support",
+] }
+build-ros-conda-support = "rattler-build build -r src/ros-conda-support/recipe.yaml"
 
 [environments]
 build = { features = ["build"], no-default-feature = true }

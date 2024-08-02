@@ -42,7 +42,7 @@ pixi run ros2 run talker talker
 ### CPP package
 ```
 pixi run ros2 pkg create --build-type ament_cmake --destination-directory src --node-name navigator navigator --dependencies rclcpp geometry_msgs turtlesim
-pixi run colcon build -G Ninja
+pixi run colcon build --cmake-args -G Ninja
 ```
 
 Run the navigator example code
@@ -122,7 +122,7 @@ class TurtleNavigator : public rclcpp::Node
 {
 public:
     TurtleNavigator()
-        : Node("turtle_navigator"), x_goal_(0.0), y_goal_(0.0), kp_(1.0), ki_(0.0), kd_(0.0), prev_error_(0.0), integral_(0.0)
+        : Node("turtle_navigator"), x_goal_(5.0), y_goal_(5.0), kp_(1.0), ki_(0.0), kd_(0.05), prev_error_(0.0), integral_(0.0)
     {
         subscription_ = this->create_subscription<geometry_msgs::msg::Point>(
             "coordinates", 10, std::bind(&TurtleNavigator::goal_callback, this, std::placeholders::_1));
@@ -157,16 +157,26 @@ private:
 
         double angle_to_goal = std::atan2(error_y, error_x);
         double angle_error = angle_to_goal - theta_current_;
+        
+        // Normalize angle error to the range [-pi, pi]
+        while (angle_error > M_PI) angle_error -= 2 * M_PI;
+        while (angle_error < -M_PI) angle_error += 2 * M_PI;
 
         // PID control
         double control_signal = kp_ * distance_error + ki_ * integral_ + kd_ * (distance_error - prev_error_);
         integral_ += distance_error;
         prev_error_ = distance_error;
 
+        // Limit control signal
+        double max_linear_speed = 2.0; // Max linear speed
+        double max_angular_speed = 2.0; // Max angular speed
+        control_signal = std::clamp(control_signal, -max_linear_speed, max_linear_speed);
+
         // Publish velocity commands
         auto msg = geometry_msgs::msg::Twist();
         msg.linear.x = control_signal;
         msg.angular.z = 4.0 * angle_error; // simple P controller for angle
+        msg.angular.z = std::clamp(msg.angular.z, -max_angular_speed, max_angular_speed);
 
         publisher_->publish(msg);
     }
@@ -194,155 +204,195 @@ int main(int argc, char *argv[])
 Now you can build and run these tools are "real" robotics tools.
 
 - Build workspace
-    ```
+    ```shell
     pixi run build
     ```
 
 - Start simulator
-    ```
+    ```shell
     pixi run sim
     ```
 - Start navigation server
-    ```
+    ```shell
     pixi run navigator
     ```
 
 - Give a coordinate command
-    ```
+    ```shell
     pixi run talker 2 3
     ```
 
 ## Now lets build these packages into a new `conda` package for later re-use in deployment.
 
-To add the build tool run the following:
+To add the build tool (`rattler-build`) run the following:
 ```
-pixi project environment add build -f build
-pixi add rattler-build
-pixi task add build-navigator rattler-build -r src/navigator/recipe.yaml
-pixi task add build-talker rattler-build -r src/talker/recipe.yaml
+pixi add rattler-build -f build
+pixi project environment add build -f build --no-default-feature
 ```
 
-You'll need to add a recipe to both packages.
-<summary>navigator recipe</summary>
+You'll need to add a recipe to both packages in `ros_workspace/src/navigator/recipe.yaml` and `ros_workspace/src/talker/recipe.yaml`
+
 <details>
-```yaml
-package:
-  name: ros-humble-navigator
-  version: 0.0.1
+  <summary>Recipes: (uncolapse)</summary>
 
-source:
-  path: .
+  ### `ros_workspace/src/navigator/recipe.yaml`:
+  ```yaml
+  package:
+    name: navigator
+    version: 0.0.1
 
-build:
-  number: 0
-  script: >-
-   colcon build --merge-install --install-base $PREFIX --cmake-args \
-    -G "Ninja" \
-    -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DCMAKE_PREFIX_PATH=$PREFIX \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DPython3_EXECUTABLE=$PYTHON_EXECUTABLE \
-    -DPython3_FIND_STRATEGY=LOCATION \
-    -DPKG_CONFIG_EXECUTABLE=$PKG_CONFIG_EXECUTABLE \
-    -DBUILD_SHARED_LIBS=ON  \
-    -DBUILD_TESTING=OFF \
-    -DCMAKE_OSX_DEPLOYMENT_TARGET=$OSX_DEPLOYMENT_TARGET \
-    $SRC_DIR\
+  source:
+    path: .
 
-
-requirements:
   build:
-    - ${{ compiler('cxx') }} 
-    - cmake
-    - ninja
-    - colcon-core
-    - colcon-ros
-    - make
-    - coreutils
-  host: 
-    - pkg-config
-    - ros-humble-ament-cmake
-    - ros-humble-ament-index-cpp
-    - ros-humble-rclcpp
-    - ros-humble-rclcpp-action
-    - ros-humble-ros-environment
-    - ros-humble-ros-workspace
-    - ros-humble-rosidl-default-generators
-    - ros-humble-std-msgs
-    - ros-humble-geometry-msgs
-    - ros-humble-turtlesim
-    - ros2-distro-mutex 0.5 humble
-  run :
-    - ros-humble-rclcpp
-    - ros-humble-ros-workspace
-    - ros-humble-rosidl-default-runtime
-    - ros-humble-geometry-msgs
-    - ros-humble-turtlesim
-    - ros2-distro-mutex 0.5 humble
+    number: 0
+    script: ros-conda-build.sh
 
-about:
-  description: Example ros package which includes a navigation server
+  requirements:
+    build:
+      - ros-conda-build-support
+      - ${{ compiler('cxx') }} 
+      - cmake
+      - ninja
+      - make
+      - coreutils
+    host: 
+      - cmake
+      - ninja
+      - make
+      - coreutils
+      - pkg-config
+      - ros-humble-ament-cmake
+      - ros-humble-ament-index-cpp
+      - ros-humble-rclcpp
+      - ros-humble-rclcpp-action
+      - ros-humble-ros-environment
+      - ros-humble-ros-workspace
+      - ros-humble-rosidl-default-generators
+      - ros-humble-std-msgs
+      - ros-humble-geometry-msgs
+      - ros-humble-turtlesim
+      - ros2-distro-mutex 0.5 humble
+    run :
+      - ros-humble-rclcpp
+      - ros-humble-ros-workspace
+      - ros-humble-rosidl-default-runtime
+      - ros-humble-geometry-msgs
+      - ros-humble-turtlesim
+      - ros2-distro-mutex 0.5 humble
 
-```
+  about:
+    description: Example ros package which includes a navigation server
+  ```
+
+  ### `ros_workspace/src/talker/recipe.yaml`:
+  ```yaml
+  package:
+    name: talker
+    version: 0.0.1
+
+  source:
+    path: .
+
+  build:
+    number: 0
+    script: py-ros-conda-build.sh
+
+
+  requirements:
+    build:
+      - ros-conda-build-support
+      - python 3.11.*
+      - setuptools <=58.2.0
+      - ${{ compiler('cxx') }} 
+      - cmake
+      - ninja
+      - colcon-core
+      - colcon-ros
+      - make
+      - coreutils
+    host: 
+      - python 3.11.*
+      - setuptools <=58.2.0
+      - colcon-core
+      - colcon-ros
+      - ros-humble-ament-package
+      - ros-humble-rclpy
+      - ros-humble-ros-environment
+      - ros-humble-ros-workspace
+      - ros-humble-rosidl-default-generators
+      - ros2-distro-mutex 0.5 humble
+    run :
+      - python 3.11.*
+      - ros-humble-rclpy
+      - ros-humble-ament-package
+      - ros-humble-ros-workspace
+      - ros-humble-rosidl-default-runtime
+      - ros2-distro-mutex 0.5 humble
+
+  about:
+    description: Example ros package which includes a talker cli app
+  ```
 </details>
 
-<summary>navigator recipe</summary>
-<details>
-```yaml
-package:
-  name: ros-humble-talker
-  version: 0.0.5
 
-source:
-  path: .
-
-build:
-  number: 0
-  script: >-
-   colcon build --merge-install --install-base $PREFIX --cmake-args \
-    -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DCMAKE_PREFIX_PATH=$PREFIX \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DPYTHON_EXECUTABLE=$BUILD_PREFIX/bin/python \
-    -DPython_EXECUTABLE=$BUILD_PREFIX/bin/python \
-    -DPython3_EXECUTABLE=$BUILD_PREFIX/bin/python \
-    -DPython3_FIND_STRATEGY=LOCATION \
-    -DBUILD_SHARED_LIBS=ON  \
-    -DBUILD_TESTING=OFF \
-    $SRC_DIR/$PKG_NAME/src/work
-
-
-requirements:
-  build:
-    - python 3.11.*
-    - setuptools <=58.2.0
-    - ${{ compiler('cxx') }} 
-    - cmake
-    - ninja
-    - colcon-core
-    - colcon-ros
-    - make
-    - coreutils
-  host: 
-    - python 3.11.*
-    - setuptools <=58.2.0
-    - ros-humble-ament-package
-    - ros-humble-rclpy
-    - ros-humble-ros-environment
-    - ros-humble-ros-workspace
-    - ros-humble-rosidl-default-generators
-    - ros2-distro-mutex 0.5 humble
-  run :
-    - python 3.11.*
-    - ros-humble-rclpy
-    - ros-humble-ament-package
-    - ros-humble-ros-workspace
-    - ros-humble-rosidl-default-runtime
-    - ros2-distro-mutex 0.5 humble
-
-about:
-  description: Example ros package which includes a talker cli app
-
-
+#### Add the build tasks:
+```shell
+pixi task add -f build build-talker "rattler-build build -r src/talker/recipe.yaml -c conda-forge -c robostack-staging -c https://prefix.dev/ros-workspace-test"
+pixi task add -f build build-navigator "rattler-build build -r src/navigator/recipe.yaml -c conda-forge -c robostack-staging -c https://prefix.dev/ros-workspace-test"
 ```
-</details>
+
+### Run the build
+```shell
+pixi run build-talker
+pixi run build-navigator
+```
+
+Now you have two `conda` packages build:
+```shell
+❯ tree output/linux-64
+output/linux-64
+├── navigator-0.0.1-hb0f4dca_0.conda
+├── repodata.json
+└── talker-0.0.1-hb0f4dca_0.conda
+
+1 directory, 3 files
+```
+
+These can be used by adding `./output` to the `channels = []` in the pixi manifest (`pixi.toml`).
+
+Or you can upload them to your own channel on https://prefix.dev/channels
+
+If you uploaded them you can create another production project with the following `pixi.toml`
+
+```toml
+[project]
+name = "ros_workspace_production"
+version = "0.1.0"
+# Example with a prebuild example, but you can switch your personal channel or local folder
+# - "./PATH/TO/ABOVE_EXAMPLE/output"
+# - "https://prefix.dev/your-channel"
+channels = ["conda-forge", "robostack-staging", "https://prefix.dev/ros-workspace-test"]
+platforms = ["linux-64"]
+
+[tasks]
+sim = "ros2 run turtlesim turtlesim_node"
+navigator = "ros2 run navigator navigator"
+talker = {cmd = "ros2 run talker talker", description = "Add two numbers, separated by a space"}
+
+[dependencies]
+ros-humble-desktop = ">=0.10.0,<0.11"
+ros-humble-turtlesim = ">=1.4.2,<2"
+
+navigator = "*"
+talker = "*"
+```
+
+And run the example with:
+```shell
+pixi run sim
+# other terminal
+pixi run navigator
+# other terminal
+pixi run talker
+```
