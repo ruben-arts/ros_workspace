@@ -4,7 +4,7 @@
 Initialize the project
 ```
 mkdir ros_workspace && cd ros_workspace
-pixi init -c conda-forge -c robostack-humble
+pixi init -c conda-forge -c robostack-staging
 ```
 
 Add a basic set of dependencies
