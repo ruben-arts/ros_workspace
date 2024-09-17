@@ -6,7 +6,7 @@ import argparse
 
 class CoordinatePublisher(Node):
     def __init__(self):
-        super().__init__('coordinate_publisher')
+        super().__init__(node_name='coordinate_publisher')
         self.publisher_ = self.create_publisher(Point, 'coordinates', 10)
 
     def publish_coordinates(self, x, y):

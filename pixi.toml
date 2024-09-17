@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add a short description here"
 authors = ["Ruben Arts <ruben.arts@hotmail.com>"]
 channels = ["conda-forge", "robostack-staging"]
-platforms = ["linux-64"]
+platforms = ["win-64", "osx-arm64", "linux-64"]
 
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
@@ -42,4 +42,3 @@ build-ros-conda-support = "rattler-build build -r src/ros-conda-support/recipe.y
 
 [environments]
 build = { features = ["build"], no-default-feature = true }
-built = { features = ["built"], no-default-feature = false }
