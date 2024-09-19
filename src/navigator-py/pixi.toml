@@ -1,6 +1,6 @@
 [project]
 authors = ["Tim de Jager <tim@prefix.dev>"]
-channels = ["conda-forge"]
+channels = ["conda-forge", "robostack-staging"]
 description = "Add a short description here"
 name = "navigator-py"
 platforms = ["win-64", "osx-arm64", "linux-64"]
@@ -12,3 +12,6 @@ version = "0.1.0"
 setuptools = "<=58.2.0"
 
 [dependencies]
+ros-humble-rclpy = ">=3.3.11,<4"
+ros-humble-geometry-msgs = ">=4.2.3,<5"
+ros-humble-turtlesim = ">=1.4.2,<2"
