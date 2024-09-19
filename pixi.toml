@@ -2,46 +2,19 @@
 name = "ros_workspace"
 version = "0.1.0"
 description = "Add a short description here"
-authors = ["Ruben Arts <ruben.arts@hotmail.com>"]
+authors = ["Ruben Arts <ruben.arts@hotmail.com>", "tdejager <tim@prefix.dev>"]
 channels = ["conda-forge", "robostack-staging"]
 platforms = ["win-64", "osx-arm64", "linux-64"]
 
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
-build = "colcon build --symlink-install --cmake-args -G Ninja"
-talker = "ros2 run talker talker"
-navigator = "ros2 run navigator navigator"
+# Get back ros2 by ensuring python files are 
+# also available in `$PREFIX/lib`
+talker = "talker"
+navigator = "navigator"
 
 [dependencies]
 # python = ">=3.11, <3.12"
 ros-humble-desktop = ">=0.10.0,<0.11"
-# ros-humble-turtlesim = ">=1.4.2,<2"
-# ros-humble-ament-cmake-auto = ">=1.3.2,<2"
-# setuptools = "<=58.2.0"
-# colcon-core = ">=0.17.1,<0.18"
-# colcon-ros = ">=0.5.0,<0.6"
-# compilers = ">=1.7.0,<2"
-# pkg-config = ">=0.29.2,<0.30"
-# cmake = ">=3.25.2,<4"
-# ninja = ">=1.12.1,<2"
-
-navigator-py = { path = "src/navigator-py" }
+navigator = { path = "src/navigator" }
 talker = { path = "src/talker" }
-
-[activation]
-# scripts = ["install/setup.sh"]
-
-[feature.build.dependencies]
-# rattler-build = "*"
-
-[feature.build.tasks]
-# build-navigator = { cmd = "rattler-build build -r src/navigator/recipe.yaml -c conda-forge -c robostack-staging -c ./output", depends-on = [
-#     "build-ros-conda-support",
-# ] }
-# build-talker = { cmd = "rattler-build build -r src/talker/recipe.yaml -c conda-forge -c robostack-staging -c ./output", depends-on = [
-#     "build-ros-conda-support",
-# ] }
-# build-ros-conda-support = "rattler-build build -r src/ros-conda-support/recipe.yaml"
-
-[environments]
-# build = { features = ["build"], no-default-feature = true }

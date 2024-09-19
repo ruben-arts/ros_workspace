@@ -254,7 +254,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pycodestyle-2.12.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pycparser-2.22-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pydocstyle-6.3.0-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/pydot-3.0.1-py311h38be061_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/pydot-3.0.1-py311h38be061_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyflakes-3.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pygments-2.18.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.1.4-pyhd8ed1ab_0.conda
@@ -622,7 +622,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zlib-1.2.13-h4ab18f5_6.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.6-ha6fb4c9_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zziplib-0.13.69-h27826a3_1.tar.bz2
-      - conda: src/navigator-py
+      - conda: src/navigator
       - conda: src/talker
       osx-arm64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiohappyeyeballs-2.4.0-pyhd8ed1ab_0.conda
@@ -841,7 +841,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pycodestyle-2.12.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pycparser-2.22-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pydocstyle-6.3.0-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pydot-3.0.1-py311h267d04e_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pydot-3.0.1-py311h267d04e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyflakes-3.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pygments-2.18.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.1.4-pyhd8ed1ab_0.conda
@@ -1194,7 +1194,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zlib-1.2.13-hfb2fe0b_6.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.6-hb46c0d2_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zziplib-0.13.69-he1e0b03_1.tar.bz2
-      - conda: src/navigator-py
+      - conda: src/navigator
       - conda: src/talker
       win-64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/aiohappyeyeballs-2.4.0-pyhd8ed1ab_0.conda
@@ -1390,7 +1390,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pycodestyle-2.12.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pycparser-2.22-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pydocstyle-6.3.0-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/win-64/pydot-3.0.1-py311h1ea47a8_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/pydot-3.0.1-py311h1ea47a8_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyflakes-3.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pygments-2.18.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.1.4-pyhd8ed1ab_0.conda
@@ -1734,7 +1734,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zlib-1.3.1-h2466b09_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.6-h0ea2cb4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zziplib-0.13.69-h3ca93ac_2.conda
-      - conda: src/navigator-py
+      - conda: src/navigator
       - conda: src/talker
 packages:
 - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -8274,15 +8274,16 @@ packages:
   license_family: GPL
   size: 1541174
   timestamp: 1709915999617
-- conda: src/navigator-py
-  name: navigator-py
-  version: 0.1.0
+- conda: src/navigator
+  name: navigator
+  version: 0.0.0
   build: pyhbf21a9e_0
   subdir: noarch
   depends:
   - ros-humble-rclpy >=3.3.11,<4
   - ros-humble-geometry-msgs >=4.2.3,<5
   - ros-humble-turtlesim >=1.4.2,<2
+  - python *
   - python
 - conda: https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-he02047a_1.conda
   sha256: 6a1d5d8634c1a07913f1c525db6455918cbc589d745fac46d9d6e30340c8731a
@@ -9513,9 +9514,9 @@ packages:
   license_family: MIT
   size: 39851
   timestamp: 1673997613432
-- conda: https://conda.anaconda.org/conda-forge/linux-64/pydot-3.0.1-py311h38be061_0.conda
-  sha256: 87de737dea9da56a3fd74a5aa1347e6c7d60ca2b34daff205ea72a00c5e9d8ba
-  md5: 036ce626484c4458cc99b6d55bb036eb
+- conda: https://conda.anaconda.org/conda-forge/linux-64/pydot-3.0.1-py311h38be061_1.conda
+  sha256: 69796759b67003db95aeeda87a0c20e6eb0131faf2f855532283878192ffb8b4
+  md5: 09a1fe2e68da301800bb919a24312e86
   depends:
   - graphviz >=2.38.0
   - pyparsing >=3.0.9
@@ -9523,12 +9524,11 @@ packages:
   - python_abi 3.11.* *_cp311
   channel: https://conda.anaconda.org/conda-forge/
   license: MIT
-  license_family: MIT
-  size: 58458
-  timestamp: 1721228186304
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/pydot-3.0.1-py311h267d04e_0.conda
-  sha256: ebed1aed93d81ad3e6261e4492537bf3275310905260dc50a8d755f807935c3c
-  md5: 341d477d619235f81332d0fa2289963e
+  size: 59480
+  timestamp: 1726737344934
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/pydot-3.0.1-py311h267d04e_1.conda
+  sha256: 8ce4d0cfeb61998c41038b8aaee4cfd700ff2f4b1b33fdc2d13d420e36c36273
+  md5: 8843952780354d2f44c563a5d5efae2e
   depends:
   - graphviz >=2.38.0
   - pyparsing >=3.0.9
@@ -9537,12 +9537,11 @@ packages:
   - python_abi 3.11.* *_cp311
   channel: https://conda.anaconda.org/conda-forge/
   license: MIT
-  license_family: MIT
-  size: 58601
-  timestamp: 1721228489179
-- conda: https://conda.anaconda.org/conda-forge/win-64/pydot-3.0.1-py311h1ea47a8_0.conda
-  sha256: fc9cb09cca470d048e0e1775cac5c5afbd1abebce4111a3fbecddf801fa7c381
-  md5: a9d052686e7012d0859b6ab76a47f688
+  size: 59140
+  timestamp: 1726737462128
+- conda: https://conda.anaconda.org/conda-forge/win-64/pydot-3.0.1-py311h1ea47a8_1.conda
+  sha256: afc08c8c12e05439e19b28e52fda6aab9a011505b258cc9a042e471b2855fcbf
+  md5: 5fa8d0e3562d2a9fe2c5d5b2b9b77b31
   depends:
   - graphviz >=2.38.0
   - pyparsing >=3.0.9
@@ -9550,9 +9549,8 @@ packages:
   - python_abi 3.11.* *_cp311
   channel: https://conda.anaconda.org/conda-forge/
   license: MIT
-  license_family: MIT
-  size: 59731
-  timestamp: 1721228440790
+  size: 59698
+  timestamp: 1726737553489
 - conda: https://conda.anaconda.org/conda-forge/noarch/pyflakes-3.2.0-pyhd8ed1ab_0.conda
   sha256: b1582410fcfa30b3597629e39b688ead87833c4a64f7c4637068f80aa1411d49
   md5: 0cf7fef6aa123df28adb21a590065e3d
@@ -28367,12 +28365,14 @@ packages:
   timestamp: 1716038937984
 - conda: src/talker
   name: talker
-  version: 0.1.0
+  version: 0.0.0
   build: pyhbf21a9e_0
   subdir: noarch
   depends:
   - ros-humble-rclpy >=3.3.11,<4
   - ros-humble-geometry-msgs >=4.2.3,<5
+  - ros-humble-turtlesim >=1.4.2,<2
+  - python *
   - python
 - conda: https://conda.anaconda.org/conda-forge/linux-64/tbb-2021.13.0-h84d6215_0.conda
   sha256: 7d4d3ad608dc6ae5a7e0f431f784985398a18bcde2ba3ce19cc32f61e2defd98
