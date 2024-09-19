@@ -1,5 +1,5 @@
 package:
-  name: talker
+  name: navigator-py
   version: 0.0.1
 
 source:
@@ -9,20 +9,19 @@ build:
   number: 0
   script: py-ros-conda-build.sh
 
-
 requirements:
   build:
     - ros-conda-build-support
     - python 3.11.*
     - setuptools <=58.2.0
-    - ${{ compiler('cxx') }} 
+    - ${{ compiler('cxx') }}
     - cmake
     - ninja
     - colcon-core
     - colcon-ros
     - make
     - coreutils
-  host: 
+  host:
     - python 3.11.*
     - setuptools <=58.2.0
     - colcon-core
@@ -33,7 +32,7 @@ requirements:
     - ros-humble-ros-workspace
     - ros-humble-rosidl-default-generators
     - ros2-distro-mutex 0.5 humble
-  run :
+  run:
     - python 3.11.*
     - ros-humble-rclpy
     - ros-humble-ament-package
@@ -42,5 +41,4 @@ requirements:
     - ros2-distro-mutex 0.5 humble
 
 about:
-  description: Example ros package which includes a talker cli app
-
+  description: Example ros package which includes a navigator-py

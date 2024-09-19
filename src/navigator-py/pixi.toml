@@ -1,0 +1,14 @@
+[project]
+authors = ["Tim de Jager <tim@prefix.dev>"]
+channels = ["conda-forge"]
+description = "Add a short description here"
+name = "navigator-py"
+platforms = ["win-64", "osx-arm64", "linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[host-dependencies]
+setuptools = "<=58.2.0"
+
+[dependencies]

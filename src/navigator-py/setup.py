@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'talker'
+package_name = 'navigator-py'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = talker.talker:main'
+            'navigator = navigator.navigator:main'
         ],
     },
 )
