@@ -81,7 +81,9 @@ class TurtleNavigator(Node):
 
 def main(args=None):
     rclpy.init(args=args)
+    print("Turtle Navigator")
     turtle_navigator = TurtleNavigator()
+    print("Waiting for command..")
     rclpy.spin(turtle_navigator)
     turtle_navigator.destroy_node()
     rclpy.shutdown()
