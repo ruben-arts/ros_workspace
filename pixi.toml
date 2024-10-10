@@ -4,14 +4,15 @@ version = "0.1.0"
 description = "Add a short description here"
 authors = ["Ruben Arts <ruben.arts@hotmail.com>", "tdejager <tim@prefix.dev>"]
 channels = ["conda-forge", "robostack-staging"]
-platforms = ["win-64", "osx-arm64", "linux-64"]
+#platforms = ["win-64", "osx-arm64", "linux-64"]
+platforms = ["osx-arm64"]
 
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
 # Get back ros2 by ensuring python files are
 # also available in `$PREFIX/lib/$PACKAGE_NAME`
 talker = "talker"
-navigator = "navigator"
+navigator = "ros2 run navigator navigator"
 
 [dependencies]
 # python = ">=3.11, <3.12"

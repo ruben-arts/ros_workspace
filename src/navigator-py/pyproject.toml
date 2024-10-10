@@ -27,6 +27,10 @@ include = ["navigator"]
 platforms = ["win-64", "osx-arm64", "linux-64"]
 channels = ["conda-forge", "robostack-staging"]
 
+[tool.pixi.build]
+build-backend = "pixi-build-python"
+dependencies = []
+
 [tool.pixi.host-dependencies]
 setuptools = ">=73.0.0"
 uv = "0.4.12"
