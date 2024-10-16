@@ -1,14 +1,17 @@
+#define _USE_MATH_DEFINES
+
+#include <cmath>
+
 #include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/point.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 #include "turtlesim/msg/pose.hpp"
-#include <cmath>
 
 class TurtleNavigator : public rclcpp::Node
 {
 public:
     TurtleNavigator()
-        : Node("turtle_navigator"), x_goal_(5.0), y_goal_(5.0), kp_(1.0), ki_(0.0), kd_(0.05), prev_error_(0.0), integral_(0.0)
+        : Node("turtle_navigator"), x_goal_(4.0), y_goal_(5.0), kp_(1.0), ki_(0.0), kd_(0.05), prev_error_(0.0), integral_(0.0)
     {
         subscription_ = this->create_subscription<geometry_msgs::msg::Point>(
             "coordinates", 10, std::bind(&TurtleNavigator::goal_callback, this, std::placeholders::_1));
