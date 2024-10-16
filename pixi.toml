@@ -1,10 +1,7 @@
 [project]
 name = "ros_workspace"
-version = "0.1.0"
-description = "Add a short description here"
-authors = ["Ruben Arts <ruben.arts@hotmail.com>", "tdejager <tim@prefix.dev>"]
 channels = ["conda-forge", "robostack-staging"]
-platforms = ["win-64"]
+platforms = ["linux-64", "osx-arm64"]
 
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
@@ -14,7 +11,6 @@ talker = "talker"
 navigator = "ros2 run navigator navigator"
 
 [dependencies]
-# python = ">=3.11, <3.12"
 ros-humble-desktop = ">=0.10.0,<0.11"
 navigator = { path = "src/navigator" }
 talker = { path = "src/talker" }

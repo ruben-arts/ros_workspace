@@ -2,7 +2,7 @@
 name = "navigator"
 version = "0.0.1"
 channels = ["conda-forge", "robostack-staging"]
-platforms = ["win-64", "osx-arm64", "linux-64"]
+platforms = ["win-64", "osx-arm64","osx-64", "linux-64"]
 
 [build]
 dependencies = ["pixi-build-cmake"]
