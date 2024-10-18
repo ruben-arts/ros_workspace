@@ -1,0 +1,29 @@
+[project]
+name = "navigator"
+version = "0.0.2"
+channels = ["conda-forge", "robostack-staging"]
+platforms = ["win-64", "osx-arm64", "osx-64", "linux-64"]
+
+[build]
+dependencies = ["pixi-build-cmake"]
+build-backend = "pixi-build-cmake"
+
+[host-dependencies]
+ros-humble-ament-cmake = "*"
+ros-humble-ament-index-cpp = "*"
+ros-humble-rclcpp = "*"
+ros-humble-rclcpp-action = "*"
+ros-humble-std-msgs = "*"
+ros-humble-geometry-msgs = "*"
+ros-humble-turtlesim = "*"
+ros2-distro-mutex = { version = "0.5", build = "humble" }
+
+[dependencies]
+ros-humble-ament-cmake = "*"
+ros-humble-ament-index-cpp = "*"
+ros-humble-rclcpp = "*"
+ros-humble-rclcpp-action = "*"
+ros-humble-std-msgs = "*"
+ros-humble-geometry-msgs = "*"
+ros-humble-turtlesim = "*"
+ros2-distro-mutex = { version = "0.5", build = "humble" }

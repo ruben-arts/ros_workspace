@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "navigator"
+version = "0.0.0"
+description = "TODO: Package description"
+license = { text = "TODO: License declaration" }
+authors = [{ name = "rarts", email = "ruben.arts@hotmail.com" }]
+maintainers = [{ name = "rarts", email = "ruben.arts@hotmail.com" }]
+
+[project.optional-dependencies]
+tests = ["pytest"]
+
+[project.scripts]
+navigator = "navigator.navigator:main"
+
+[tool.setuptools.packages.find]
+include = ["navigator"]
+
+[tool.setuptools.data-files]
+"share/ament_index/resource_index/packages" = ["resource/navigator"]
+"share/navigator" = ["package.xml"]
+
+[tool.pixi.project]
+platforms = ["win-64", "osx-arm64", "linux-64"]
+channels = ["conda-forge", "robostack-staging"]
+
+[tool.pixi.build]
+build-backend = "pixi-build-python"
+dependencies = []
+
+[tool.pixi.host-dependencies]
+setuptools = ">=73.0.0"
+uv = "0.4.12"
+
+[tool.pixi.dependencies]
+ros-humble-rclpy = ">=3.3.11,<4"
+ros-humble-geometry-msgs = ">=4.2.3,<5"
+ros-humble-turtlesim = ">=1.4.2,<2"
