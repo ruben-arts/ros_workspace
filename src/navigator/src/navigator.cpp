@@ -11,7 +11,7 @@ class TurtleNavigator : public rclcpp::Node
 {
 public:
     TurtleNavigator()
-        : Node("turtle_navigator"), x_goal_(4.1), y_goal_(5.0), kp_(2.0), ki_(0.0), kd_(0.05), prev_error_(0.0), integral_(0.0)
+        : Node("turtle_navigator"), x_goal_(4.0), y_goal_(5.0), kp_(1.0), ki_(0.0), kd_(0.05), prev_error_(0.0), integral_(0.0)
     {
         subscription_ = this->create_subscription<geometry_msgs::msg::Point>(
             "coordinates", 10, std::bind(&TurtleNavigator::goal_callback, this, std::placeholders::_1));
@@ -21,8 +21,8 @@ public:
 
         timer_ = this->create_wall_timer(
             std::chrono::milliseconds(100), std::bind(&TurtleNavigator::control_loop, this));
-        
-        RCLCPP_INFO(this->get_logger(), "TurtleNavigator has been started!");
+
+        RCLCPP_INFO(this->get_logger(), "Turtle Navigator has been started!");
         RCLCPP_INFO(this->get_logger(), "Initial goal: x=%f, y=%f", x_goal_, y_goal_);
     }
 
@@ -50,7 +50,7 @@ private:
 
         double angle_to_goal = std::atan2(error_y, error_x);
         double angle_error = angle_to_goal - theta_current_;
-        
+
         // Normalize angle error to the range [-pi, pi]
         while (angle_error > M_PI) angle_error -= 2 * M_PI;
         while (angle_error < -M_PI) angle_error += 2 * M_PI;

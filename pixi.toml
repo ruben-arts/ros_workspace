@@ -1,7 +1,7 @@
 [project]
 name = "ros_workspace"
 channels = ["conda-forge", "robostack-staging"]
-platforms = ["linux-64", "osx-arm64"]
+platforms = ["linux-64", "osx-arm64"]           
 
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
