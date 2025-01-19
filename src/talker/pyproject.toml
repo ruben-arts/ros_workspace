@@ -5,11 +5,6 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "talker"
 version = "0.0.0"
-description = "TODO: Package description"
-readme = "README.md"
-license = { text = "TODO: License declaration" }
-authors = [{ name = "rarts", email = "ruben.arts@hotmail.com" }]
-maintainers = [{ name = "rarts", email = "ruben.arts@hotmail.com" }]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -30,18 +25,26 @@ include = ["talker"]
 "share/talker" = ["package.xml"]
 
 [tool.pixi.project]
-platforms = ["win-64", "osx-arm64", "linux-64"]
+preview = ["pixi-build"]
+platforms = ["osx-arm64"]
 channels = ["conda-forge", "robostack-staging"]
 
-[tool.pixi.build]
-build-backend = "pixi-build-python"
-dependencies = []
+[tool.pixi.package]
+name = "talker"
+version = "1.2.3"
 
-[tool.pixi.host-dependencies]
+[tool.pixi.package.build]
+backend = { name = "pixi-build-python", version = "*" }
+channels = [
+    "https://prefix.dev/pixi-build-backends",
+    "https://prefix.dev/conda-forge",
+]
+
+[tool.pixi.package.host-dependencies]
 setuptools = ">=73.0.0"
-uv = "0.4.12"
+uv = "==0.5.20"
 
-[tool.pixi.dependencies]
+[tool.pixi.package.run-dependencies]
 ros-humble-rclpy = ">=3.3.11,<4"
 ros-humble-geometry-msgs = ">=4.2.3,<5"
 ros-humble-turtlesim = ">=1.4.2,<2"

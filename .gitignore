@@ -10,3 +10,5 @@ output
 build
 install
 log
+
+.DS_Store
