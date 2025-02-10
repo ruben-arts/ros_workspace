@@ -40,10 +40,6 @@ channels = [
     "https://prefix.dev/conda-forge",
 ]
 
-[tool.pixi.package.host-dependencies]
-setuptools = ">=73.0.0"
-uv = "==0.5.20"
-
 [tool.pixi.package.run-dependencies]
 ros-humble-rclpy = ">=3.3.11,<4"
 ros-humble-geometry-msgs = ">=4.2.3,<5"

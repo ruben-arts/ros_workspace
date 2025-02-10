@@ -1,5 +1,6 @@
 # pixi environments
 .pixi
+*.conda
 *.egg-info
 
 *.pyc

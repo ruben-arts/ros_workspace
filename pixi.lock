@@ -577,6 +577,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zlib-1.2.13-hfb2fe0b_6.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.6-hb46c0d2_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zziplib-0.13.69-he1e0b03_1.tar.bz2
+      - conda: src/navigator
       - conda: src/talker
 packages:
 - conda: https://conda.anaconda.org/conda-forge/noarch/aiohappyeyeballs-2.4.3-pyhd8ed1ab_0.conda
@@ -2637,6 +2638,26 @@ packages:
   license_family: GPL
   size: 1541174
   timestamp: 1709915999617
+- conda: src/navigator
+  name: navigator
+  version: 0.0.2
+  build: hbf21a9e_0
+  subdir: osx-arm64
+  depends:
+  - ros-humble-ament-cmake
+  - ros-humble-ament-index-cpp
+  - ros-humble-rclcpp
+  - ros-humble-rclcpp-action
+  - ros-humble-std-msgs
+  - ros-humble-geometry-msgs
+  - ros-humble-turtlesim
+  - ros2-distro-mutex ==0.5 humble
+  - libcxx >=19
+  - ros2-distro-mutex 0.5.*
+  input:
+    hash: df0e640c9c5d54b87adcfcecbdcfcee986c8bef388bbdeccbb9d164aca9f6d52
+    globs:
+    - pixi.toml
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h7bae524_1.conda
   sha256: 27d0b9ff78ad46e1f3a6c96c479ab44beda5f96def88e2fe626e0a49429d8afc
   md5: cb2b0ea909b97b3d70cd3921d1445e1a
@@ -8664,7 +8685,7 @@ packages:
   - ros-humble-turtlesim >=1.4.2,<2
   - python
   input:
-    hash: 90a05420a499680c5c1f83f4482f4e300bcbf7287622401e1b5d316159070a07
+    hash: a821acb6527eacee096969baa40d78442bcbbb4f6094d28f0d13e84e99c0c774
     globs:
     - pyproject.toml
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/tbb-2022.0.0-h0cbf7ec_0.conda

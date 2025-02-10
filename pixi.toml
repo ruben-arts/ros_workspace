@@ -7,12 +7,10 @@ preview = ["pixi-build"]
 
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
-# Get back ros2 by ensuring python files are
-# also available in `$PREFIX/lib/$PACKAGE_NAME`
-talker = "talker"
+talker = "ros2 run talker talker"
 navigator = "ros2 run navigator navigator"
 
 [dependencies]
 ros-humble-desktop = ">=0.10.0,<0.11"
-# navigator = { path = "src/navigator" }
+navigator = { path = "src/navigator" }
 talker = { path = "src/talker" }

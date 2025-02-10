@@ -10,7 +10,6 @@ platforms = ["osx-arm64"]
 preview = ["pixi-build"]
 
 [package.build]
-version = "0.0.2"
 channels = [
     "https://prefix.dev/pixi-build-backends",
     "https://prefix.dev/conda-forge",
@@ -19,16 +18,7 @@ backend = { name = "pixi-build-cmake", version = "*" }
 
 
 [package.build-dependencies]
-ros-humble-ament-cmake = "*"
-ros-humble-ament-index-cpp = "*"
-ros-humble-rclcpp = "*"
-ros-humble-rclcpp-action = "*"
-ros-humble-std-msgs = "*"
-ros-humble-geometry-msgs = "*"
-ros-humble-turtlesim = "*"
-ros2-distro-mutex = { version = "0.5", build = "humble" }
 ninja = "*"
-compilers = "*"
 
 [package.host-dependencies]
 ros-humble-ament-cmake = "*"
@@ -39,7 +29,6 @@ ros-humble-std-msgs = "*"
 ros-humble-geometry-msgs = "*"
 ros-humble-turtlesim = "*"
 ros2-distro-mutex = { version = "0.5", build = "humble" }
-ninja = "*"
 compilers = "*"
 
 [package.run-dependencies]
