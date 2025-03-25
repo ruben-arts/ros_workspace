@@ -11,22 +11,15 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-[project.scripts]
-talker = "talker.talker:main"
-
 [project.optional-dependencies]
 test = ["pytest"]
 
 [tool.setuptools.packages.find]
 include = ["talker"]
 
-[tool.setuptools.data-files]
-"share/ament_index/resource_index/packages" = ["resource/talker"]
-"share/talker" = ["package.xml"]
-
 [tool.pixi.project]
 preview = ["pixi-build"]
-platforms = ["osx-arm64"]
+platforms = ["osx-arm64", "linux-64"]
 channels = ["conda-forge", "robostack-staging"]
 
 [tool.pixi.package]
@@ -39,6 +32,16 @@ channels = [
     "https://prefix.dev/pixi-build-backends",
     "https://prefix.dev/conda-forge",
 ]
+
+[tool.pixi.package.host-dependencies]
+setuptools = "*"
+ros-humble-ament-package = "*"
+ros-humble-rclpy = "*"
+ros-humble-ros-environment = "*"
+ros-humble-ros-workspace = "*"
+ros2-distro-mutex = {version = "0.5.*", build = "humble"}
+uv = "*"
+wheel = "*"
 
 [tool.pixi.package.run-dependencies]
 ros-humble-rclpy = ">=3.3.11,<4"

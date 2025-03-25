@@ -1,0 +1,6 @@
+{
+  "channels": [
+    "https://conda.anaconda.org/conda-forge/",
+    "https://conda.anaconda.org/robostack-staging/"
+  ]
+}
