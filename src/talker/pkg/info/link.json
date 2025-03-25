@@ -1,9 +1,0 @@
-{
-  "noarch": {
-    "type": "python",
-    "entry_points": [
-      "talker = talker.talker:main"
-    ]
-  },
-  "package_metadata_version": 1
-}
