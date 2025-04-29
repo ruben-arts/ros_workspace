@@ -40,10 +40,6 @@ channels = [
 ]
 dependencies = ["pixi-build-python"]
 
-[tool.pixi.host-dependencies]
-setuptools = ">=73.0.0"
-uv = "0.4.12"
-
 [tool.pixi.dependencies]
 ros-humble-rclpy = ">=3.3.11,<4"
 ros-humble-geometry-msgs = ">=4.2.3,<5"
