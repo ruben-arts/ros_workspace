@@ -24,27 +24,16 @@ include = ["talker"]
 "share/ament_index/resource_index/packages" = ["resource/talker"]
 "share/talker" = ["package.xml"]
 
-[tool.pixi.project]
-preview = ["pixi-build"]
-platforms = ["osx-arm64"]
-channels = ["conda-forge", "robostack-staging"]
-
 [tool.pixi.package]
-name = "talker"
-version = "1.2.3"
+name = "undefined"
+version = "0.0.0"
 
-[tool.pixi.package.build]
-backend = { name = "pixi-build-python", version = "*" }
-channels = [
-    "https://prefix.dev/pixi-build-backends",
-    "https://prefix.dev/conda-forge",
-]
+[tool.pixi.package.build.backend]
+name = "pixi-build-ros"
+git = "https://github.com/ruben-arts/pixi-build-backends"
+subdirectory = "backends/pixi-build-ros"
+branch = "fix/ros-backend"
 
-[tool.pixi.package.host-dependencies]
-setuptools = ">=73.0.0"
-uv = "==0.5.20"
-
-[tool.pixi.package.run-dependencies]
-ros-humble-rclpy = ">=3.3.11,<4"
-ros-humble-geometry-msgs = ">=4.2.3,<5"
-ros-humble-turtlesim = ">=1.4.2,<2"
+[tool.pixi.package.build.config]
+distro = "humble"
+debug_dir = "pixi-build-debug" 

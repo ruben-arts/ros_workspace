@@ -1,53 +1,19 @@
-[package]
-name = "navigator"
-version = "0.0.2"
-
 [workspace]
-name = "navigator"
-version = "0.0.2"
-channels = ["conda-forge", "robostack-staging"]
+channels = ["https://prefix.dev/pixi-build-backends", "https://prefix.dev/conda-forge", "https://prefix.dev/robostack-staging"]
 platforms = ["osx-arm64"]
 preview = ["pixi-build"]
 
-[package.build]
-version = "0.0.2"
-channels = [
-    "https://prefix.dev/pixi-build-backends",
-    "https://prefix.dev/conda-forge",
-]
-backend = { name = "pixi-build-cmake", version = "*" }
+[package]
+name = "undefined"
+version = "0.0.0"
+
+[package.build.backend]
+name = "pixi-build-ros"
+git = "https://github.com/ruben-arts/pixi-build-backends"
+subdirectory = "backends/pixi-build-ros"
+branch = "fix/ros-backend"
 
 
-[package.build-dependencies]
-ros-humble-ament-cmake = "*"
-ros-humble-ament-index-cpp = "*"
-ros-humble-rclcpp = "*"
-ros-humble-rclcpp-action = "*"
-ros-humble-std-msgs = "*"
-ros-humble-geometry-msgs = "*"
-ros-humble-turtlesim = "*"
-ros2-distro-mutex = { version = "0.5", build = "humble" }
-ninja = "*"
-compilers = "*"
-
-[package.host-dependencies]
-ros-humble-ament-cmake = "*"
-ros-humble-ament-index-cpp = "*"
-ros-humble-rclcpp = "*"
-ros-humble-rclcpp-action = "*"
-ros-humble-std-msgs = "*"
-ros-humble-geometry-msgs = "*"
-ros-humble-turtlesim = "*"
-ros2-distro-mutex = { version = "0.5", build = "humble" }
-ninja = "*"
-compilers = "*"
-
-[package.run-dependencies]
-ros-humble-ament-cmake = "*"
-ros-humble-ament-index-cpp = "*"
-ros-humble-rclcpp = "*"
-ros-humble-rclcpp-action = "*"
-ros-humble-std-msgs = "*"
-ros-humble-geometry-msgs = "*"
-ros-humble-turtlesim = "*"
-ros2-distro-mutex = { version = "0.5", build = "humble" }
+[package.build.config]
+distro = "humble"
+debug_dir = "pixi-build-debug" 
