@@ -9,10 +9,7 @@ version = "0.0.0"
 
 [package.build.backend]
 name = "pixi-build-ros"
-git = "https://github.com/ruben-arts/pixi-build-backends"
-subdirectory = "backends/pixi-build-ros"
-branch = "fix/ros-backend"
-
+version = "*"
 
 [package.build.config]
 distro = "humble"

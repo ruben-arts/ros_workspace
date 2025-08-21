@@ -12,3 +12,6 @@ install
 log
 
 .DS_Store
+
+# Profiling
+profile.json.gz

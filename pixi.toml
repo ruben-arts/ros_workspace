@@ -5,7 +5,7 @@ preview = ["pixi-build"]
 
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
-talker = "ros2 run talker talker"
+talker = "ros2 run talker_py talker"
 navigator = "ros2 run navigator navigator"
 navigator-py = "ros2 run navigator_py navigator"
 
@@ -13,4 +13,4 @@ navigator-py = "ros2 run navigator_py navigator"
 ros-humble-desktop = ">=0.10.0,<0.11"
 ros-humble-navigator = { path = "src/navigator" }
 ros-humble-navigator-py = { path = "src/navigator-py" }
-ros-humble-talker = { path = "src/talker" }
+ros-humble-talker-py = { path = "src/talker-py" }
