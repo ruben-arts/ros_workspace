@@ -1,6 +1,8 @@
 # pixi environments
 .pixi
 *.egg-info
+files.txt
+pixi-build-debug
 
 *.pyc
 
@@ -12,3 +14,6 @@ install
 log
 
 .DS_Store
+
+# Profiling
+profile.json.gz

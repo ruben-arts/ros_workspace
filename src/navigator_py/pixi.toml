@@ -1,0 +1,11 @@
+[package.build.backend]
+name = "pixi-build-ros"
+version = ">=0.1.1"
+#path = "/Users/rubenarts/dev/pixi-build-backends/backends/pixi-build-ros"
+
+[package.build.config]
+distro = "humble"
+
+[package]
+name = "undefined"
+version = "0.0.0"
