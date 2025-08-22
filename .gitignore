@@ -1,6 +1,8 @@
 # pixi environments
 .pixi
 *.egg-info
+files.txt
+pixi-build-debug
 
 *.pyc
 

@@ -59,9 +59,9 @@ class TurtleNavigator(Node):
 
         # PID control
         control_signal = (
-            self.kp * distance_error
-            + self.ki * self.integral
-            + self.kd * (distance_error - self.prev_error)
+                self.kp * distance_error
+                + self.ki * self.integral
+                + self.kd * (distance_error - self.prev_error)
         )
         self.integral += distance_error
         self.prev_error = distance_error
