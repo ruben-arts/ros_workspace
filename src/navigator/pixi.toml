@@ -1,11 +1,6 @@
-[package]
-name = "undefined"
-version = "0.0.0"
-
 [package.build.backend]
 name = "pixi-build-ros"
 version = "*"
 
 [package.build.config]
 distro = "humble"
-debug_dir = "pixi-build-debug" 

@@ -1404,7 +1404,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/osx-arm64/libclang-cpp19.1-19.1.7-default_hf90f093_3.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/libclang13-20.1.8-default_h91d7d2a_0.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/libcurl-8.14.1-h73640d1_0.conda
-      - conda: https://prefix.dev/conda-forge/osx-arm64/libcxx-20.1.8-hf598326_1.conda
+      - conda: https://prefix.dev/conda-forge/osx-arm64/libcxx-21.1.0-hf598326_1.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/libdeflate-1.24-h5773f1b_0.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/libedit-3.1.20250104-pl5321hafb1f1b_0.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/libev-4.33-h93a5062_2.conda
@@ -7276,15 +7276,15 @@ packages:
   license_family: MIT
   size: 368346
   timestamp: 1749033492826
-- conda: https://prefix.dev/conda-forge/osx-arm64/libcxx-20.1.8-hf598326_1.conda
-  sha256: 119b3ac75cb1ea29981e5053c2cb10d5f0b06fcc81b486cb7281f160daf673a1
-  md5: a69ef3239d3268ef8602c7a7823fd982
+- conda: https://prefix.dev/conda-forge/osx-arm64/libcxx-21.1.0-hf598326_1.conda
+  sha256: 58427116dc1b58b13b48163808daa46aacccc2c79d40000f8a3582938876fed7
+  md5: 0fb2c0c9b1c1259bc7db75c1342b1d99
   depends:
   - __osx >=11.0
   license: Apache-2.0 WITH LLVM-exception
   license_family: Apache
-  size: 568267
-  timestamp: 1752814881595
+  size: 568692
+  timestamp: 1756698505599
 - conda: https://prefix.dev/conda-forge/linux-64/libdeflate-1.24-h86f0d12_0.conda
   sha256: 8420748ea1cc5f18ecc5068b4f24c7a023cc9b20971c99c824ba10641fb95ddf
   md5: 64f0c503da58ec25ebd359e4d990afa8
@@ -23738,8 +23738,12 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: 894ac9821195eeb1dc3caf471a673f701d16503a140843f91d3b23d9f4513a96
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/navigator
   name: ros-humble-navigator
   version: 0.0.0
@@ -23755,8 +23759,12 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: 894ac9821195eeb1dc3caf471a673f701d16503a140843f91d3b23d9f4513a96
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/navigator
   name: ros-humble-navigator
   version: 0.0.0
@@ -23766,12 +23774,16 @@ packages:
   - ros-humble-rclcpp
   - ros-humble-geometry-msgs
   - ros-humble-turtlesim
-  - libcxx >=20
+  - libcxx >=21
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: 894ac9821195eeb1dc3caf471a673f701d16503a140843f91d3b23d9f4513a96
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/navigator
   name: ros-humble-navigator
   version: 0.0.0
@@ -23786,8 +23798,12 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: 894ac9821195eeb1dc3caf471a673f701d16503a140843f91d3b23d9f4513a96
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/navigator_py
   name: ros-humble-navigator-py
   version: 0.0.0
@@ -23800,8 +23816,12 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: e168a14ea4b8c82c406adacf272c890557969f4bf6352d49f9445cdb2a5a36bc
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/navigator_py
   name: ros-humble-navigator-py
   version: 0.0.0
@@ -23814,20 +23834,28 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: e168a14ea4b8c82c406adacf272c890557969f4bf6352d49f9445cdb2a5a36bc
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/navigator_py
   name: ros-humble-navigator-py
   version: 0.0.0
   build: hbf21a9e_0
   subdir: osx-arm64
   depends:
-  - libcxx >=20
+  - libcxx >=21
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: e168a14ea4b8c82c406adacf272c890557969f4bf6352d49f9445cdb2a5a36bc
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/navigator_py
   name: ros-humble-navigator-py
   version: 0.0.0
@@ -23839,8 +23867,12 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: e168a14ea4b8c82c406adacf272c890557969f4bf6352d49f9445cdb2a5a36bc
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: https://prefix.dev/robostack-staging/linux-64/ros-humble-orocos-kdl-vendor-0.2.5-np126py311hbc2a38a_13.conda
   sha256: de46a2167d484f48c194054a1c03c933c0828070c7c4608102aaf7c5b13934c5
   md5: 62f2e860f99ce1163d32027820e0c49a
@@ -35969,8 +36001,12 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: 697a0e222b885f3ab93c9f088d4530b85951c110161e6c146e2e82111e189035
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/talker-py
   name: ros-humble-talker-py
   version: 0.0.0
@@ -35983,20 +36019,28 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: 697a0e222b885f3ab93c9f088d4530b85951c110161e6c146e2e82111e189035
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/talker-py
   name: ros-humble-talker-py
   version: 0.0.0
   build: hbf21a9e_0
   subdir: osx-arm64
   depends:
-  - libcxx >=20
+  - libcxx >=21
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: 697a0e222b885f3ab93c9f088d4530b85951c110161e6c146e2e82111e189035
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/talker-py
   name: ros-humble-talker-py
   version: 0.0.0
@@ -36008,8 +36052,12 @@ packages:
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
   input:
-    hash: a0ef12458525fd82e99faadff261db07eaa731bc822ce229d45650571cc67b33
-    globs: []
+    hash: 697a0e222b885f3ab93c9f088d4530b85951c110161e6c146e2e82111e189035
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: https://prefix.dev/robostack-staging/linux-64/ros-humble-tango-icons-vendor-0.1.1-np126py311hbc2a38a_13.conda
   sha256: f42f029e15f253f7720e34d09f5267d1deab7871e5ebc352f4c10d21cd1c32e3
   md5: b27952b578f44a1fe6bfcf2092e95170
