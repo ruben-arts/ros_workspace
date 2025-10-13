@@ -3,14 +3,24 @@ channels = ["https://prefix.dev/pixi-build-backends", "https://prefix.dev/conda-
 platforms = ["osx-arm64", "linux-64", "win-64", "linux-aarch64"]
 preview = ["pixi-build"]
 
+[activation]
+scripts = ["install/setup.sh"]
+
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
-talker = "ros2 run talker_py talker"
-navigator = "ros2 run navigator navigator"
-navigator_py = "ros2 run navigator_py navigator"
+talker = { cmd = "ros2 run talker_py talker" }
+navigator = { cmd = "ros2 run navigator navigator" }
+navigator_py = { cmd = "ros2 run navigator_py navigator" }
+
+# Dev tasks
+install = "colcon build --merge-install"
+test = "colcon test --merge-install"
 
 [dependencies]
 ros-humble-desktop = ">=0.10.0,<0.11"
+colcon-ros = "*"
+
+[develop]
 ros-humble-navigator = { path = "src/navigator" }
 ros-humble-navigator-py = { path = "src/navigator_py" }
 ros-humble-talker-py = { path = "src/talker-py" }
