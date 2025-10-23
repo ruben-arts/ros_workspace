@@ -1,5 +1,9 @@
 [workspace]
-channels = ["https://prefix.dev/pixi-build-backends", "https://prefix.dev/conda-forge", "https://prefix.dev/robostack-staging"]
+channels = [
+    "https://prefix.dev/pixi-build-backends",
+    "https://prefix.dev/conda-forge",
+    "https://prefix.dev/robostack-humble",
+]
 platforms = ["osx-arm64", "linux-64", "win-64", "linux-aarch64"]
 preview = ["pixi-build"]
 
@@ -10,7 +14,8 @@ navigator = "ros2 run navigator navigator"
 navigator_py = "ros2 run navigator_py navigator"
 
 [dependencies]
-ros-humble-desktop = ">=0.10.0,<0.11"
+ros-humble-ros-core = ">=0.10.0,<0.11"
+ros-humble-turtlesim = "*"
 ros-humble-navigator = { path = "src/navigator" }
 ros-humble-navigator-py = { path = "src/navigator_py" }
 ros-humble-talker-py = { path = "src/talker-py" }
