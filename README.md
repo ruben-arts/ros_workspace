@@ -2,7 +2,7 @@
 
 A modern ROS 2 workspace showcasing **pixi-build-ros** - the simplest way to build and manage ROS packages.
 
-## 🚀 Quick Demo
+## Quick Demo
 
 ```bash
 # Clone this repository
@@ -31,7 +31,7 @@ pixi run talker 5.5 8.0
 
 Watch the turtle smoothly navigate to your coordinates using a PID controller!
 
-## ✨ Why pixi-build-ros?
+## Why pixi-build-ros?
 
 - **Zero configuration**: No complex extra's needed, just a small pixi toml and the rest is automated.
 - **Isolated builds**: Each package builds in its own clean environment
@@ -39,12 +39,12 @@ Watch the turtle smoothly navigate to your coordinates using a PID controller!
 - **Dependency magic**: Automatically handles ROS dependencies
 - **Fast iteration**: Incremental builds and smart caching
 
-## 📋 Prerequisites
+## Prerequisites
 
 - [Pixi](https://pixi.sh/latest/) installed
 - No ROS installation needed - pixi handles everything!
 
-## 🎮 This Workspace Demo
+## This Workspace Demo
 
 ### What's Included
 
@@ -80,7 +80,7 @@ pixi run talker 2.5 7.0
 
 Try different coordinates and watch the intelligent navigation!
 
-## 🏗️ Creating a New Workspace
+## Creating a New Workspace
 
 ### Step 1: Initialize
 
@@ -106,7 +106,7 @@ pixi run ros2 run turtlesim turtlesim_node
 
 You should see a turtle appear in a graphical window!
 
-## 📦 Adding ROS Packages
+## Adding ROS Packages
 
 ### Python Package
 
@@ -115,30 +115,24 @@ Create the ROS package:
 pixi run ros2 pkg create --build-type ament_python --destination-directory src --node-name my_node my_python_pkg
 ```
 
-Add pixi-build-ros configuration:
-```bash
-cd src/my_python_pkg
-cat > pixi.toml << 'EOF'
-[package]
-name = "undefined" # Change this to your package name or keep undefined to fetch it from the package.xml
-version = "0.0.0" # Change this to your package version or keep 0.0.0 to fetch it from the package.xml
-
-[package.build.backend]
-name = "pixi-build-ros"
-version = ">=0.1.1"
-
-[package.build.config]
-distro = "humble"
-EOF
-```
-Register with workspace (root `pixi.toml`):
-
 
 ```toml
 [dependencies]
 ros-humble-desktop = ">=0.10.0,<0.11"
-ros-humble-my-python-pkg = { path = "src/my_python_pkg" }
+ros-humble-my-python-pkg = { path = "src/my_python_pkg/package.xml" }
 ```
+
+And add the `https://prefix.dev/pixi-build-backends` channel to the `channels`.
+
+```toml
+[workspace]
+channels = [
+    "https://prefix.dev/pixi-build-backends",
+    "https://prefix.dev/conda-forge",
+    "https://prefix.dev/robostack-humble",
+]
+```
+
 ### C++ Package
 
 Create the ROS package:
@@ -146,29 +140,13 @@ Create the ROS package:
 pixi run ros2 pkg create --build-type ament_cmake --destination-directory src --node-name my_node my_cpp_pkg --dependencies rclcpp std_msgs
 ```
 
-Add pixi-build-ros configuration:
-```bash
-cd src/my_cpp_pkg
-cat > pixi.toml << 'EOF'
-[package]
-name = "undefined" # Change this to your package name or keep undefined to fetch it from the package.xml
-version = "0.0.0" # Change this to your package version or keep 0.0.0 to fetch it from the package.xml
-
-[package.build.backend]
-name = "pixi-build-ros"
-version = ">=0.1.1"
-
-[package.build.config]
-distro = "humble"
-EOF
-```
 
 Register with workspace:
 ```toml
 [dependencies]
 ros-humble-desktop = ">=0.10.0,<0.11"
-ros-humble-my-python-pkg = { path = "src/my_python_pkg" }
-ros-humble-my-cpp-pkg = { path = "src/my_cpp_pkg" }
+ros-humble-my-python-pkg = { path = "src/my_python_pkg/package.xml" }
+ros-humble-my-cpp-pkg = { path = "src/my_cpp_pkg/package.xml" }
 ```
 
 ### Add Convenience Tasks
@@ -178,7 +156,7 @@ pixi task add my-python "ros2 run my_python_pkg my_node"
 pixi task add my-cpp "ros2 run my_cpp_pkg my_node"
 ```
 
-## 📦 Creating Distribution Packages
+## Creating Distribution Packages
 
 Build conda packages for deployment:
 
@@ -192,7 +170,7 @@ Share your packages:
 - Distribute to your team
 - Deploy to production environments
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Build Issues
 
