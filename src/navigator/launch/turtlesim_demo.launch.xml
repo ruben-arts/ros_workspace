@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Launch turtlesim node -->
+    <node pkg="turtlesim" exec="turtlesim_node" name="turtlesim"/>
+
+    <!-- Launch navigator node -->
+    <node pkg="navigator" exec="navigator" name="navigator" output="screen"/>
+
+    <!-- Launch talker node with coordinate arguments -->
+    <node pkg="talker_py" exec="talker" name="talker" output="screen" args="5.0 5.0"/>
+</launch>

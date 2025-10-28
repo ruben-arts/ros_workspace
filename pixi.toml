@@ -12,6 +12,7 @@ sim = "ros2 run turtlesim turtlesim_node"
 talker = "ros2 run talker_py talker"
 navigator = "ros2 run navigator navigator"
 navigator_py = "ros2 run navigator_py navigator"
+start = "ros2 launch navigator turtlesim_demo.launch.xml"
 
 [dependencies]
 ros-humble-ros-core = ">=0.10.0,<0.11"

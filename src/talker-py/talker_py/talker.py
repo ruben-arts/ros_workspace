@@ -1,6 +1,7 @@
 import sys
 import rclpy
 from rclpy.node import Node
+from rclpy.utilities import remove_ros_args
 from geometry_msgs.msg import Point
 import argparse
 
@@ -18,6 +19,7 @@ class CoordinatePublisher(Node):
         self.get_logger().info(f'Publishing: x={x}, y={y}')
 
 def main(args=None):
+    # Initialize ROS with all arguments (including ROS args)
     rclpy.init(args=args)
     node = CoordinatePublisher()
 
@@ -25,8 +27,9 @@ def main(args=None):
     parser.add_argument('x', type=float, help='X coordinate')
     parser.add_argument('y', type=float, help='Y coordinate')
 
-
-    args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
+    # Filter out ROS-specific arguments before parsing with argparse
+    filtered_args = remove_ros_args(sys.argv)[1:]
+    args = parser.parse_args(args=filtered_args if filtered_args else ['--help'])
 
 
     try:
