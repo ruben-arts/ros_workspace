@@ -20,7 +20,7 @@ test = "colcon test --merge-install"
 ros-humble-desktop = ">=0.10.0,<0.11"
 colcon-ros = "*"
 
-    # [dev]
+[dev]
 ros-humble-navigator = { path = "src/navigator" }
 ros-humble-navigator-py = { path = "src/navigator_py" }
 ros-humble-talker-py = { path = "src/talker-py" }
