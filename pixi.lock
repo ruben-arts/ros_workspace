@@ -5,6 +5,8 @@ environments:
     - url: https://prefix.dev/pixi-build-backends/
     - url: https://prefix.dev/conda-forge/
     - url: https://prefix.dev/robostack-humble/
+    options:
+      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://prefix.dev/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -350,11 +352,11 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
       - conda: src/navigator/package.xml
-        subdir: linux-64
+        build: hb0f4dca_0
       - conda: src/navigator_py/package.xml
-        subdir: linux-64
+        build: hb0f4dca_0
       - conda: src/talker-py/package.xml
-        subdir: linux-64
+        build: hb0f4dca_0
       linux-aarch64:
       - conda: https://prefix.dev/conda-forge/linux-aarch64/_openmp_mutex-4.5-2_gnu.tar.bz2
       - conda: https://prefix.dev/conda-forge/linux-aarch64/alsa-lib-1.2.14-h86ecc28_0.conda
@@ -698,11 +700,11 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/zstd-1.5.7-hbcf94c1_2.conda
       - conda: src/navigator/package.xml
-        subdir: linux-aarch64
+        build: he8cfe8b_0
       - conda: src/navigator_py/package.xml
-        subdir: linux-aarch64
+        build: he8cfe8b_0
       - conda: src/talker-py/package.xml
-        subdir: linux-aarch64
+        build: he8cfe8b_0
       osx-arm64:
       - conda: https://prefix.dev/conda-forge/noarch/argcomplete-3.6.3-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/bzip2-1.0.8-hd037594_8.conda
@@ -982,11 +984,11 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/zstd-1.5.7-h6491c7d_2.conda
       - conda: src/navigator/package.xml
-        subdir: osx-arm64
+        build: h60d57d3_0
       - conda: src/navigator_py/package.xml
-        subdir: osx-arm64
+        build: h60d57d3_0
       - conda: src/talker-py/package.xml
-        subdir: osx-arm64
+        build: h60d57d3_0
       win-64:
       - conda: https://prefix.dev/conda-forge/noarch/argcomplete-3.6.3-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/win-64/bzip2-1.0.8-h0ad9c76_8.conda
@@ -1247,11 +1249,11 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/win-64/zstd-1.5.7-hbeecb71_2.conda
       - conda: src/navigator/package.xml
-        build: h9352c13_0
+        build: h2433df5_0
       - conda: src/navigator_py/package.xml
-        build: h9352c13_0
+        build: h2433df5_0
       - conda: src/talker-py/package.xml
-        build: h9352c13_0
+        build: h2433df5_0
 packages:
 - conda: https://prefix.dev/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
   sha256: fe51de6107f9edc7aa4f786a70f4a883943bc9d39b3bb7307c04c41410990726
@@ -11724,8 +11726,11 @@ packages:
 - conda: src/navigator/package.xml
   name: ros-humble-navigator
   version: 0.0.0
-  build: h9352c13_0
+  build: h2433df5_0
   subdir: win-64
+  variants:
+    cxx_compiler: vs2019
+    target_platform: win-64
   depends:
   - ros-humble-rclcpp
   - ros-humble-geometry-msgs
@@ -11749,54 +11754,10 @@ packages:
 - conda: src/navigator/package.xml
   name: ros-humble-navigator
   version: 0.0.0
-  build: hbf21a9e_0
-  subdir: linux-64
-  depends:
-  - ros-humble-rclcpp
-  - ros-humble-geometry-msgs
-  - ros-humble-turtlesim
-  - ros2-distro-mutex
-  - ros2-distro-mutex >=0.7.0,<0.8.0a0
-  - libgcc >=15
-  - libgcc >=15
-  - libstdcxx >=15
-  - python_abi 3.11.* *_cp311
-  - numpy >=1.26.4,<2.0a0
-  input:
-    hash: b133545030a2882086a4df475cbb165ade6412402e8c84e459e512daae170e4a
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
-- conda: src/navigator/package.xml
-  name: ros-humble-navigator
-  version: 0.0.0
-  build: hbf21a9e_0
-  subdir: linux-aarch64
-  depends:
-  - ros-humble-rclcpp
-  - ros-humble-geometry-msgs
-  - ros-humble-turtlesim
-  - ros2-distro-mutex
-  - ros2-distro-mutex >=0.7.0,<0.8.0a0
-  - libgcc >=15
-  - libgcc >=15
-  - libstdcxx >=15
-  - python_abi 3.11.* *_cp311
-  - numpy >=1.26.4,<2.0a0
-  input:
-    hash: b133545030a2882086a4df475cbb165ade6412402e8c84e459e512daae170e4a
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
-- conda: src/navigator/package.xml
-  name: ros-humble-navigator
-  version: 0.0.0
-  build: hbf21a9e_0
+  build: h60d57d3_0
   subdir: osx-arm64
+  variants:
+    target_platform: osx-arm64
   depends:
   - ros-humble-rclcpp
   - ros-humble-geometry-msgs
@@ -11813,11 +11774,64 @@ packages:
     - package.xml
     - setup.cfg
     - setup.py
+- conda: src/navigator/package.xml
+  name: ros-humble-navigator
+  version: 0.0.0
+  build: hb0f4dca_0
+  subdir: linux-64
+  variants:
+    target_platform: linux-64
+  depends:
+  - ros-humble-rclcpp
+  - ros-humble-geometry-msgs
+  - ros-humble-turtlesim
+  - ros2-distro-mutex
+  - ros2-distro-mutex >=0.7.0,<0.8.0a0
+  - libgcc >=15
+  - libgcc >=15
+  - libstdcxx >=15
+  - python_abi 3.11.* *_cp311
+  - numpy >=1.26.4,<2.0a0
+  input:
+    hash: b133545030a2882086a4df475cbb165ade6412402e8c84e459e512daae170e4a
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
+- conda: src/navigator/package.xml
+  name: ros-humble-navigator
+  version: 0.0.0
+  build: he8cfe8b_0
+  subdir: linux-aarch64
+  variants:
+    target_platform: linux-aarch64
+  depends:
+  - ros-humble-rclcpp
+  - ros-humble-geometry-msgs
+  - ros-humble-turtlesim
+  - ros2-distro-mutex
+  - ros2-distro-mutex >=0.7.0,<0.8.0a0
+  - libgcc >=15
+  - libgcc >=15
+  - libstdcxx >=15
+  - python_abi 3.11.* *_cp311
+  - numpy >=1.26.4,<2.0a0
+  input:
+    hash: b133545030a2882086a4df475cbb165ade6412402e8c84e459e512daae170e4a
+    globs:
+    - CMakeLists.txt
+    - package.xml
+    - setup.cfg
+    - setup.py
 - conda: src/navigator_py/package.xml
   name: ros-humble-navigator-py
   version: 0.0.0
-  build: h9352c13_0
+  build: h2433df5_0
   subdir: win-64
+  variants:
+    cxx_compiler: vs2019
+    target_platform: win-64
   depends:
   - ros2-distro-mutex
   - ros2-distro-mutex >=0.7.0,<0.8.0a0
@@ -11828,71 +11842,49 @@ packages:
   - ucrt >=10.0.20348.0
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
-  input:
-    hash: e168a14ea4b8c82c406adacf272c890557969f4bf6352d49f9445cdb2a5a36bc
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
 - conda: src/navigator_py/package.xml
   name: ros-humble-navigator-py
   version: 0.0.0
-  build: hbf21a9e_0
-  subdir: linux-64
-  depends:
-  - ros2-distro-mutex
-  - ros2-distro-mutex >=0.7.0,<0.8.0a0
-  - libgcc >=15
-  - libgcc >=15
-  - libstdcxx >=15
-  - python_abi 3.11.* *_cp311
-  - numpy >=1.26.4,<2.0a0
-  input:
-    hash: e168a14ea4b8c82c406adacf272c890557969f4bf6352d49f9445cdb2a5a36bc
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
-- conda: src/navigator_py/package.xml
-  name: ros-humble-navigator-py
-  version: 0.0.0
-  build: hbf21a9e_0
-  subdir: linux-aarch64
-  depends:
-  - ros2-distro-mutex
-  - ros2-distro-mutex >=0.7.0,<0.8.0a0
-  - libgcc >=15
-  - libgcc >=15
-  - libstdcxx >=15
-  - python_abi 3.11.* *_cp311
-  - numpy >=1.26.4,<2.0a0
-  input:
-    hash: e168a14ea4b8c82c406adacf272c890557969f4bf6352d49f9445cdb2a5a36bc
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
-- conda: src/navigator_py/package.xml
-  name: ros-humble-navigator-py
-  version: 0.0.0
-  build: hbf21a9e_0
+  build: h60d57d3_0
   subdir: osx-arm64
+  variants:
+    target_platform: osx-arm64
   depends:
   - ros2-distro-mutex
   - ros2-distro-mutex >=0.7.0,<0.8.0a0
   - libcxx >=21
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
-  input:
-    hash: e168a14ea4b8c82c406adacf272c890557969f4bf6352d49f9445cdb2a5a36bc
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
+- conda: src/navigator_py/package.xml
+  name: ros-humble-navigator-py
+  version: 0.0.0
+  build: hb0f4dca_0
+  subdir: linux-64
+  variants:
+    target_platform: linux-64
+  depends:
+  - ros2-distro-mutex
+  - ros2-distro-mutex >=0.7.0,<0.8.0a0
+  - libgcc >=15
+  - libgcc >=15
+  - libstdcxx >=15
+  - python_abi 3.11.* *_cp311
+  - numpy >=1.26.4,<2.0a0
+- conda: src/navigator_py/package.xml
+  name: ros-humble-navigator-py
+  version: 0.0.0
+  build: he8cfe8b_0
+  subdir: linux-aarch64
+  variants:
+    target_platform: linux-aarch64
+  depends:
+  - ros2-distro-mutex
+  - ros2-distro-mutex >=0.7.0,<0.8.0a0
+  - libgcc >=15
+  - libgcc >=15
+  - libstdcxx >=15
+  - python_abi 3.11.* *_cp311
+  - numpy >=1.26.4,<2.0a0
 - conda: https://prefix.dev/robostack-humble/linux-64/ros-humble-osrf-pycommon-2.1.6-np126py311hbc2a38a_13.conda
   sha256: f98fb2e3c542b9600512acf317cbb418adc5d7f03730f0e28ca8ac7f05d13ea5
   md5: 63b2ce925db370d03a65c96a1dcd0bf6
@@ -18656,8 +18648,11 @@ packages:
 - conda: src/talker-py/package.xml
   name: ros-humble-talker-py
   version: 0.0.0
-  build: h9352c13_0
+  build: h2433df5_0
   subdir: win-64
+  variants:
+    cxx_compiler: vs2019
+    target_platform: win-64
   depends:
   - ros2-distro-mutex
   - ros2-distro-mutex >=0.7.0,<0.8.0a0
@@ -18668,71 +18663,49 @@ packages:
   - ucrt >=10.0.20348.0
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
-  input:
-    hash: 697a0e222b885f3ab93c9f088d4530b85951c110161e6c146e2e82111e189035
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
 - conda: src/talker-py/package.xml
   name: ros-humble-talker-py
   version: 0.0.0
-  build: hbf21a9e_0
-  subdir: linux-64
-  depends:
-  - ros2-distro-mutex
-  - ros2-distro-mutex >=0.7.0,<0.8.0a0
-  - libgcc >=15
-  - libgcc >=15
-  - libstdcxx >=15
-  - python_abi 3.11.* *_cp311
-  - numpy >=1.26.4,<2.0a0
-  input:
-    hash: 697a0e222b885f3ab93c9f088d4530b85951c110161e6c146e2e82111e189035
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
-- conda: src/talker-py/package.xml
-  name: ros-humble-talker-py
-  version: 0.0.0
-  build: hbf21a9e_0
-  subdir: linux-aarch64
-  depends:
-  - ros2-distro-mutex
-  - ros2-distro-mutex >=0.7.0,<0.8.0a0
-  - libgcc >=15
-  - libgcc >=15
-  - libstdcxx >=15
-  - python_abi 3.11.* *_cp311
-  - numpy >=1.26.4,<2.0a0
-  input:
-    hash: 697a0e222b885f3ab93c9f088d4530b85951c110161e6c146e2e82111e189035
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
-- conda: src/talker-py/package.xml
-  name: ros-humble-talker-py
-  version: 0.0.0
-  build: hbf21a9e_0
+  build: h60d57d3_0
   subdir: osx-arm64
+  variants:
+    target_platform: osx-arm64
   depends:
   - ros2-distro-mutex
   - ros2-distro-mutex >=0.7.0,<0.8.0a0
   - libcxx >=21
   - python_abi 3.11.* *_cp311
   - numpy >=1.26.4,<2.0a0
-  input:
-    hash: 697a0e222b885f3ab93c9f088d4530b85951c110161e6c146e2e82111e189035
-    globs:
-    - CMakeLists.txt
-    - package.xml
-    - setup.cfg
-    - setup.py
+- conda: src/talker-py/package.xml
+  name: ros-humble-talker-py
+  version: 0.0.0
+  build: hb0f4dca_0
+  subdir: linux-64
+  variants:
+    target_platform: linux-64
+  depends:
+  - ros2-distro-mutex
+  - ros2-distro-mutex >=0.7.0,<0.8.0a0
+  - libgcc >=15
+  - libgcc >=15
+  - libstdcxx >=15
+  - python_abi 3.11.* *_cp311
+  - numpy >=1.26.4,<2.0a0
+- conda: src/talker-py/package.xml
+  name: ros-humble-talker-py
+  version: 0.0.0
+  build: he8cfe8b_0
+  subdir: linux-aarch64
+  variants:
+    target_platform: linux-aarch64
+  depends:
+  - ros2-distro-mutex
+  - ros2-distro-mutex >=0.7.0,<0.8.0a0
+  - libgcc >=15
+  - libgcc >=15
+  - libstdcxx >=15
+  - python_abi 3.11.* *_cp311
+  - numpy >=1.26.4,<2.0a0
 - conda: https://prefix.dev/robostack-humble/linux-64/ros-humble-tinyxml2-vendor-0.7.6-np126py311hbc2a38a_14.conda
   sha256: d806603bd80250d30cb69158dca4d273920ee172f3bf3d5119728889e9697789
   md5: 9ef35ad9a922d89a4de91ee02d56afc2
