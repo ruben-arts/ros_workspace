@@ -156,20 +156,6 @@ pixi task add my-python "ros2 run my_python_pkg my_node"
 pixi task add my-cpp "ros2 run my_cpp_pkg my_node"
 ```
 
-## Creating Distribution Packages
-
-Build conda packages for deployment:
-
-```bash
-# Creates .conda files for distribution
-pixi build
-```
-
-Share your packages:
-- Upload to [prefix.dev](https://prefix.dev/channels)
-- Distribute to your team
-- Deploy to production environments
-
 ## Troubleshooting
 
 ### Build Issues
